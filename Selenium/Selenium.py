@@ -50,8 +50,8 @@
 
 # and
 # or
-# contains()
-# starts-with()
+# contains()     => //button[contains(@id,'menu')]
+# starts-with()  => //*[starts-with(@id, 'react')]
 # text()
 
 
@@ -103,6 +103,16 @@ driver.maximize_window()
 # driver.find_element(By.CSS_SELECTOR, "input.inputtext[data-testid=royal_pass]").send_keys("gowtham")
 # driver.find_element(By.CSS_SELECTOR, "button._42ft[data-testid=royal_login_button]").click()
 
+import selenium
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
+driver= webdriver.Chrome(executable_path=r'C:\Users\Gowtham\PycharmProjects\pythonProject2\Selenium\chromedriver-win64\chromedriver.exe')
 
+try:
+    browser=driver.get("https://www.saucedemo.com/")
+    browser.maximize_window()
+
+except Exception as e:
+    print(e)
 
