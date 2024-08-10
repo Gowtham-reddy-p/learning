@@ -1,4 +1,5 @@
 # Selemium => UI automation framework
+import time
 
 # Selenium webdriver => which controls the web browsers (chrome,edge)
 
@@ -70,11 +71,21 @@
 # preceding-sibling  => // current html tag[attribute='value']/preceding-sibling:: previous tag[@attribute='value]
 
 
+# Different types of commands:
+
+# Application/get commands - title, current url, page source
+# Conditional commands
+# Browser commands
+# Navigational commands
+# Wait commands
+
+
 
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Chrome(executable_path=r'C:\Users\Gowtham\PycharmProjects\pythonProject2\Selenium\chromedriver-win64\chromedriver.exe')
 
@@ -109,10 +120,26 @@ from selenium.webdriver.common.by import By
 
 driver= webdriver.Chrome(executable_path=r'C:\Users\Gowtham\PycharmProjects\pythonProject2\Selenium\chromedriver-win64\chromedriver.exe')
 
+browser=driver.get("https://www.saucedemo.com/")
+driver.maximize_window()
+
 try:
-    browser=driver.get("https://www.saucedemo.com/")
-    browser.maximize_window()
+    user_name= driver.find_element(by=By.ID,value="user-name")
+    user_name.send_keys("standard_user")
+
+    password= driver.find_element(By.NAME,"password")
+    password.send_keys("secret_sauce")
 
 except Exception as e:
     print(e)
+finally:
+    login= driver.find_element(By.XPATH, "//*[@id='login-button']")
+    login.click()
+    time.sleep(10)
 
+def test_login():
+    assert driver.title=="Swag Labs"
+
+
+action = ActionChains(driver)
+twitter_id= driver.find_element(By.CSS_SELECTOR, "a[]")
