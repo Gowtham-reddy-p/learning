@@ -74,8 +74,8 @@ import time
 # Different types of commands:
 
 # Application/get commands - title, current url, page source
-# Conditional commands
-# Browser commands
+# Conditional commands  - is_displayed(), is_enabled(), is_selected() :- used for radio button & checkbox
+# Browser commands  - close(), quit()
 # Navigational commands
 # Wait commands
 
@@ -83,9 +83,11 @@ import time
 
 
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+
 
 driver = webdriver.Chrome(executable_path=r'C:\Users\Gowtham\PycharmProjects\pythonProject2\Selenium\chromedriver-win64\chromedriver.exe')
 
@@ -140,6 +142,7 @@ finally:
 def test_login():
     assert driver.title=="Swag Labs"
 
+print(driver.current_url)
 
-action = ActionChains(driver)
-twitter_id= driver.find_element(By.CSS_SELECTOR, "a[]")
+
+
